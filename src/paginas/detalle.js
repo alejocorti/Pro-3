@@ -44,10 +44,11 @@ class Detalle extends Component {
                             </div>
                             <div>
                                 <h2>{this.state.pelicula.title}</h2>
-                                <p>Puntaje: {this.state.pelicula.vote_average}</p>
+                                <p>Calificacion: {this.state.pelicula.vote_average}</p>
                                 <p>Estreno: {this.state.pelicula.release_date}</p>
                                 <p>Overview: {this.state.pelicula.overview}</p>
                                 <p>Genero: {this.state.pelicula.genres.map(g=><span key ={g.id}>{g.name} </span>)}</p>
+                                <p>Duracion: {this.state.pelicula.runtime}min</p>
                                 <p> <button> Agregar a Favoritos</button></p>
                             </div>
 
