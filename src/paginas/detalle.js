@@ -11,7 +11,6 @@ class Detalle extends Component {
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        console.log(id);
         const url = 'https://api.themoviedb.org/3/movie/'+id+'language=en-US'
 
         console.log(id)
