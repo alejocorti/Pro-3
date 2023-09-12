@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Loader from "../components/loader/loader"
 import Info from '../components/info/info';
 const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 
@@ -8,7 +9,8 @@ const clave = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUwZTc1NWIxZjljMTI5ZTUzYWE3Yzhh
 class Home extends Component {
     constructor(props){
         super(props)
-        this.state = {
+        this.state = { 
+            cargando: true, 
             peliculas: []
     }
     } 
@@ -24,13 +26,15 @@ class Home extends Component {
         fetch (url, opciones)
         .then (data => data.json())
         .then (data => {
-            console.log(data)
-            this.setState({peliculas: data.results})
+            this.setState({cargando: false, peliculas: data.results})
         })
 
     }
     render(){
-        console.log (this.state.peliculas)
+        if (this.state.cargando){
+            return( <Loader></Loader>)
+        }
+
         return (
             <div>
                 <h1 className="titulo">Home</h1>
