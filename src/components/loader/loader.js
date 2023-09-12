@@ -1,7 +1,12 @@
 import "./loader.css"
 function Loader() {
     return (
-        <div className="lds-circle"><div></div></div>
+
+        <div className="loader">
+
+        <div class="lds-dual-ring"></div>
+        </div>
+
     )
 }
 

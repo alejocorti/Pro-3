@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Loader from "../components/loader/loader"
 const clave = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUwZTc1NWIxZjljMTI5ZTUzYWE3YzhhZjNkOTg2OCIsInN1YiI6IjYzNzJjYTUzYmYwZjYzMDA3ZmU0ZjdjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l2bg2TJYE72KEMLrZdS6K2cz-Y2cErlz008Pqjpxavs' //toke que es todo este string//
 
         
@@ -7,6 +8,7 @@ const clave = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUwZTc1NWIxZjljMTI5ZTUzYWE3Yzhh
         constructor(props) {
             super(props)
             this.state = {
+                cargando: true, 
                 genres: []
             }
         }
@@ -23,12 +25,14 @@ const clave = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUwZTc1NWIxZjljMTI5ZTUzYWE3Yzhh
                 .then(data => data.json())
                 .then(data => {
                     console.log(data)
-                    this.setState({ genres: data.genres })
+                    this.setState({ cargando: false, genres: data.genres })
                 })
     
         }
         render() {
-           
+            if (this.state.cargando){
+                return( <Loader></Loader>)
+            }
             return (
                 <div>
                 <h1 className="titulo" >Categorias</h1>
