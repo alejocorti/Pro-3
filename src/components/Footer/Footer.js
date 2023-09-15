@@ -6,7 +6,7 @@ function Footer(props){
 
     return(
         <footer>
-            <p>Alejo Corti</p>
+            <p>Alejo Corti Giganti</p>
             <p className="separador">|</p>
             <p>Maria Varas</p>
             <p className="separador">|</p>
@@ -14,3 +14,5 @@ function Footer(props){
         </footer>
     )
 }
+
+export default Footer
