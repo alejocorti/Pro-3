@@ -23,7 +23,7 @@ class Favoritos extends Component {
         };
     };
 
-// metodo de ciclo de vida en react (componente montado en el DOM)
+    // metodo de ciclo de vida en react (componente montado en el DOM)
     componentDidMount() {
         // se recupera elemento favoritos y se guarda en la variable recuperoStorage
         let recuperoStorage = localStorage.getItem('favoritos');
@@ -31,30 +31,30 @@ class Favoritos extends Component {
         // verifica que no sea null, si hay favoritas, se ejecuta el bloque de codigo.
         if (recuperoStorage !== null) {
             // cadena JSON almacenada en recuperoStorage "array de objetos"
-            favoritosToArray = JSON.parse(recuperoStorage); 
+            favoritosToArray = JSON.parse(recuperoStorage);
             let peliculas = [] // array vacio que almacenara peliculas 
             // bucle for recorre elementos en favoritostoarray
-            for(let i = 0; i < favoritosToArray.length; i++){
-                if(favoritosToArray[i] !== null){
+            for (let i = 0; i < favoritosToArray.length; i++) {
+                if (favoritosToArray[i] !== null) {
                     // solicitud de api con el metodo fetch 
                     fetch(`https://api.themoviedb.org/3/movie/${favoritosToArray[i]}?api_key=1845c94396255a256363182ed898e8fc&language=en-US`)
-                    // la respuesta se convierte en un objeto javascript con res.json
-                    .then(res => res.json())
-                    .then(data => {
-                        peliculas.push(data)
-                        this.setState({
-                            peliculas: peliculas, // se agrega al array 
-                            loader: false // completo la carga 
-                        });
-                    })
-                    .catch(err => console.log(err))
+                        // la respuesta se convierte en un objeto javascript con res.json
+                        .then(res => res.json())
+                        .then(data => {
+                            peliculas.push(data)
+                            this.setState({
+                                peliculas: peliculas, // se agrega al array 
+                                loader: false // completo la carga 
+                            });
+                        })
+                        .catch(err => console.log(err))
                 }
             }
 
 
         };
         // se ejecuta si recuperostorage no tiene elementos 
-        if (JSON.parse(recuperoStorage).length === 0){
+        if (JSON.parse(recuperoStorage).length === 0) {
             this.setState({
                 loader: false // indica que no hay peliculas 
             })
@@ -62,7 +62,7 @@ class Favoritos extends Component {
 
     }
     // esto sirve para borrar una pelicula de la lista de favoritos que almacenamos en localstorage
-    borrar(id){ //metodo
+    borrar(id) { //metodo
         //recuperamos elemento y lo convertimos en un array 
         let recuperoStorage = localStorage.getItem('favoritos');
         let favoritosToArray = JSON.parse(recuperoStorage);
@@ -96,17 +96,17 @@ class Favoritos extends Component {
                                             <img src={`https://image.tmdb.org/t/p/w500/${unaPelicula.poster_path}`} alt="" />
                                         </Link>
                                         <div className='card-favdiv'>
-                                        <h2>{unaPelicula.title}</h2> {/* Nombre */}
-                                        <i className="fa-solid fa-heart" onClick={() => {
-                                            this.state.borrar.push(unaPelicula.id);
-                                            this.setState({
-                                                peliculas: this.state.peliculas.filter(pelicula =>
-                                                    !this.state.borrar.includes(pelicula.id)
-                                                )
-                                            });
-                                            this.borrar(unaPelicula.id)
-                                        }}
-                                        ></i>
+                                            <h2>{unaPelicula.title}</h2> {/* Nombre */}
+                                            <i className="fa-solid fa-heart" onClick={() => {
+                                                this.state.borrar.push(unaPelicula.id);
+                                                this.setState({
+                                                    peliculas: this.state.peliculas.filter(pelicula =>
+                                                        !this.state.borrar.includes(pelicula.id)
+                                                    )
+                                                });
+                                                this.borrar(unaPelicula.id)
+                                            }}
+                                            ></i>
                                         </div>
                                         <Link to={`/detallePelicula/id/${unaPelicula.id}`}>
                                             <p> Ir a detalles </p>
