@@ -1,31 +1,37 @@
-import { Switch, Route } from "react-router-dom";
-import Categorias from "./paginas/categorias";
-import Detalle from "./paginas/detalle";
-import Nav from "./components/nav/nav";
-import Footer from "./components/footer/footer";
-import Home from "./paginas/home";
-import NotFound from "./paginas/notfound"
-import React from "react";
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+//Punto 2 y 3
+import Header from './components/Header/Header';
+import Home from './screens/Home/Home';
+import Footer from './components/Footer/Footer';
+// punto 5 y 6 
+import Detalle from './screens/Detail/Detail';
+import Favoritos from './screens/Favoritos/Favoritos';
+import NotFound from './screens/NotFound/NotFound';
+import ViewAll from './screens/ViewAll/ViewAll';
+import ViewAllPopulares from './screens/ViewAllPopulares/ViewAllPopulares';
+
+
 function App() {
-  //linea 11 el path significa la ruta de la pagina a la que voy a entrar//
-
   return (
-    <React.Fragment>
-      <Nav></Nav>
-        <Switch>
+    <>
+      <React.Fragment>
+    <Header/>
 
-        <Route path="/" exact={true} component={Home}/>
-        <Route path="/home" component={Home}/>
-        <Route path="/categorias" exact={true} component={Categorias}/> 
-        <Route path="/detalle/:id" component={Detalle}/>
-        <Route path="*" component={NotFound}/>
+      <Switch>
+        <Route path='/' exact component={ Home }/>
+        {/* ACA VAN LAS RUTAS DE LOS OTROS PUNTOS */}
+        <Route path='/favoritos' component={ Favoritos }/>
+        <Route path='/populares' component={ ViewAllPopulares }/>
+        <Route path='/estrenos' component={ ViewAll }/>
+        <Route path='/detallePelicula/id/:id' component={ Detalle }/>
+        <Route path='' component={ NotFound }/>
+        
 
-        </Switch>
-      <Footer></Footer>
+      </Switch>
+    <Footer/>
     </React.Fragment>
-
-    
-
+    </>
   );
 }
 
